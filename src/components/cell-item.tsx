@@ -52,12 +52,14 @@ const CellItem: FC<CelltItemProps> = ({ onEdit, cell }) => {
       {isEditing ? (
         <div className="flex gap-3 justify-center items-center">
           <Controller
+            //@ts-ignore
             name={columnName}
             control={control}
             defaultValue={value}
             render={({ field }) => <input {...field} />}
           />
           {errors[columnName]?.message && (
+            //@ts-ignore
             <span className="text-red-500">{errors[columnName].message}</span>
           )}
           <button className="rounded border-blue-400 border-[1px] p-1 h-[28px] flex justify-center items-center">
