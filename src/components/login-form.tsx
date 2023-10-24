@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
   const [isPending, setIsPending] = useState<boolean>(false)
 
   const onSubmit: SubmitHandler<UserData> = async (data: UserData) => {
-    setIsPending(false)
+    setIsPending(true)
     executeLogIn(
       data,
       async () => {
@@ -28,10 +28,10 @@ const LoginForm: React.FC = () => {
         router.push("/table")
       },
       (error) => {
+        setIsPending(false)
         console.error("Login failed. Error:", error)
       }
     )
-    setIsPending(true)
   }
 
   return (

@@ -27,7 +27,9 @@ const Popup: FC<PopupProps> = ({ children }) => {
   }
 
   const onSubmit = (data: NewItem) => {
-    //handleAddItem(data)
+    console.log(data)
+
+    handleAddItem(data)
   }
 
   return (
