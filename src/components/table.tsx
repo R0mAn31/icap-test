@@ -11,6 +11,7 @@ import { ChevronsDown, ChevronsUp, ChevronsUpDown } from "lucide-react"
 import Popup from "./popup"
 import { columns, data } from "@/constants"
 import CustomButton from "./custom-button"
+import GitLink from "./git-link"
 
 const Table = () => {
   const [pages, setPages] = useState(0)
@@ -194,6 +195,7 @@ const Table = () => {
             <span className="text-6xl font-bold">No info</span>
           </div>
         )}
+        <GitLink />
       </div>
     </>
   )

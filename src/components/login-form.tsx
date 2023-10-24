@@ -6,6 +6,7 @@ import { executeLogIn, handleGetTableData } from "@/actions"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
 import CustomButton from "./custom-button"
+import GitLink from "./git-link"
 
 const LoginForm: React.FC = () => {
   const {
@@ -22,7 +23,7 @@ const LoginForm: React.FC = () => {
     setIsPending(false)
     executeLogIn(
       data,
-      async (responseData) => {
+      async () => {
         handleGetTableData(router, dispatch)
         router.push("/table")
       },
@@ -102,6 +103,7 @@ const LoginForm: React.FC = () => {
           <CustomButton isPending={isPending} text="Login" />
         </div>
       </form>
+      <GitLink />
     </div>
   )
 }
