@@ -4,12 +4,14 @@ import {
     putTableData,
     postNewItem,
     getCountOfItems,
+    deleteItem
 } from "./api-methods";
 
 import {
     handleGetTableData,
     handlePatchTableData,
     handleAddItem,
+    handleDeleteItem
 } from "./server-actions";
 
 export {
@@ -21,4 +23,6 @@ export {
     handleGetTableData,
     handlePatchTableData,
     handleAddItem,
+    deleteItem,
+    handleDeleteItem
 };

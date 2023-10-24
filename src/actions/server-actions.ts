@@ -1,5 +1,5 @@
 import { setCount } from "@/store/dispatchers/countSlice"
-import { getCountOfItems, getTableData, putTableData, postNewItem } from "./api-methods"
+import { getCountOfItems, getTableData, putTableData, postNewItem, deleteItem } from "./api-methods"
 import { setTableData } from "@/store/dispatchers/tableSlice"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 import { AnyAction, Dispatch } from "redux"
@@ -10,7 +10,7 @@ const handleGetTableData = async (router: AppRouterInstance, dispatch: Dispatch<
         dispatch(setTableData(responseData))
       },
       (error) => {
-        console.error("Login failed. Error:", error)
+        console.error("Get table data failed. Error:", error)
         return
       },
       offset
@@ -21,7 +21,7 @@ const handleGetTableData = async (router: AppRouterInstance, dispatch: Dispatch<
         dispatch(setCount(responseData?.count))
       },
       (error) => {
-        console.error("Login failed. Error:", error)
+        console.error("Get count failed. Error:", error)
         return
       }
   )
@@ -33,7 +33,7 @@ const handlePatchTableData = async (data: TableItem) => {
       data,
       async () => {},
       (error) => {
-        console.error("Login failed. Error:", error)
+        console.error("Patch item failed. Error:", error)
       }
     )
 }
@@ -44,7 +44,7 @@ const handleAddItem = async (data: NewItem) => {
       async () => {
       },
       (error) => {
-        console.error("Login failed. Error:", error)
+        console.error("Adding failed. Error:", error)
       }
     )
 }
@@ -55,10 +55,23 @@ const handleGetCount= async () => {
             return responseData?.count
         },
         (error) => {
-            console.error("Login failed. Error:", error)
+            console.error("Get count failed. Error:", error)
             return 0
         }
     )
 }
+
+const handleDeleteItem = async (index: number) => {
+  await deleteItem(
+      async (responseData: any) => {
+          return responseData?.count
+      },
+      (error) => {
+          console.error("Delete failed. Error:", error)
+          return 0
+    },
+    index
+  )
+}
   
-export {handleGetTableData, handlePatchTableData, handleAddItem, handleGetCount}
+export {handleGetTableData, handlePatchTableData, handleAddItem, handleGetCount, handleDeleteItem}

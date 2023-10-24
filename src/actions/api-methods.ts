@@ -86,4 +86,13 @@ const getCountOfItems = async (onSuccess: (response: unknown) => void, onError: 
   });
 };
 
-export { executeLogIn, getTableData, putTableData, postNewItem, getCountOfItems };
+const deleteItem = async (onSuccess: (response: unknown) => void, onError: (response: unknown) => void, index: number) => {
+  executeRequest({
+    onSuccess: onSuccess,
+    onError: onError,
+    method: "delete",
+    url: `https://technical-task-api.icapgroupgmbh.com/api/table/${index}/`,
+  });
+};
+
+export { executeLogIn, getTableData, putTableData, postNewItem, getCountOfItems, deleteItem};

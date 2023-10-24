@@ -6,13 +6,7 @@ const GitLink = () => {
       href="https://github.com/R0mAn31/icap-test"
       target="_blank"
       rel="noopener noreferrer"
-      style={{
-        position: "fixed",
-        bottom: "20px",
-        right: "20px",
-        color: "blue",
-        textDecoration: "none",
-      }}
+      className="fixed bottom-[20px] right-[20px] text-[blue]"
     >
       GitHub Repository
     </a>

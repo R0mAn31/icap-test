@@ -1,5 +1,5 @@
-import Table from "@/components/table"
+import TableWrapper from "@/components/table-wrapper"
 
 export default function Home() {
-  return <Table />
+  return <TableWrapper />
 }

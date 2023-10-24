@@ -4,6 +4,7 @@ import React, { FC, useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { handleDeleteItem } from "@/actions"
 
 interface CelltItemProps {
   onEdit?: (editedValue: string) => void
@@ -44,19 +45,30 @@ const CellItem: FC<CelltItemProps> = ({ onEdit, cell }) => {
     reset()
   }
 
+  const handleDeleteClick = async (value: number) => {
+    await handleDeleteItem(value)
+  }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex align-middle justify-center"
+      className={`flex align-middle justify-center hover:bg-blue-200 ${
+        isEditing ? "bg-blue-200" : ""
+      }`}
     >
       {isEditing ? (
-        <div className="flex gap-3 justify-center items-center">
+        <div className="flex flex-wrap gap-3 justify-center items-center bg-blue-200 min-w-[250px] min-h-[200px] max-w-[250px] max-h-[200px] p-2">
           <Controller
             //@ts-ignore
             name={columnName}
             control={control}
             defaultValue={value}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => (
+              <input
+                {...field}
+                className="rounded min-h-[40px] active:border-blue-300 max-w-[130px]"
+              />
+            )}
           />
           {errors[columnName]?.message && (
             //@ts-ignore
@@ -76,9 +88,9 @@ const CellItem: FC<CelltItemProps> = ({ onEdit, cell }) => {
           </button>
         </div>
       ) : (
-        <div className="flex gap-3 w-[160px] justify-center items-center">
+        <div className="flex gap-3 min-w-[250px] min-h-[200px] max-w-[250px] max-h-[200px] justify-center items-center">
           {cell.value}
-          {columnName !== "id" && (
+          {columnName !== "id" ? (
             <button
               onClick={(e) => {
                 e.preventDefault()
@@ -88,6 +100,15 @@ const CellItem: FC<CelltItemProps> = ({ onEdit, cell }) => {
             >
               Edit
               <Pencil size={18} />
+            </button>
+          ) : (
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                handleDeleteClick(cell.value)
+              }}
+            >
+              <X size={18} className="text-[red]" />
             </button>
           )}
         </div>
