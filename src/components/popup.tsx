@@ -18,6 +18,7 @@ const Popup: FC<PopupProps> = ({ children }) => {
     reset,
     formState: { errors },
   } = useForm({
+    //@ts-ignore
     resolver: yupResolver(validationSchema),
   })
 
@@ -39,6 +40,7 @@ const Popup: FC<PopupProps> = ({ children }) => {
             onClick={handleOpen}
           ></div>
           <form
+            //@ts-ignore
             onSubmit={handleSubmit(onSubmit)}
             className="relative flex flex-col gap-2 justify-center left-0 top-0 align-middle border bg-slate-400 p-4 rounded-lg"
           >
@@ -51,6 +53,7 @@ const Popup: FC<PopupProps> = ({ children }) => {
                   render={({ field }) => <input {...field} />}
                 />
                 {errors?.name && (
+                  //@ts-ignore
                   <span className="text-red-500">{errors?.name?.message}</span>
                 )}
               </div>
@@ -64,6 +67,7 @@ const Popup: FC<PopupProps> = ({ children }) => {
                   render={({ field }) => <input {...field} />}
                 />
                 {errors?.email && (
+                  //@ts-ignore
                   <span className="text-red-500">{errors?.email?.message}</span>
                 )}
               </div>
@@ -77,8 +81,9 @@ const Popup: FC<PopupProps> = ({ children }) => {
                   render={({ field }) => <input {...field} />}
                 />
                 {errors?.birthday_date && (
+                  //@ts-ignore
                   <span className="text-red-500">
-                    {errors?.birthday_date?.message}
+                    {errors?.birthday_date?.message?.toString()}
                   </span>
                 )}
               </div>
@@ -93,7 +98,7 @@ const Popup: FC<PopupProps> = ({ children }) => {
                 />
                 {errors?.phone_number && (
                   <span className="text-red-500">
-                    {errors?.phone_number?.message}
+                    {errors?.phone_number?.message?.toString()}
                   </span>
                 )}
               </div>
@@ -108,7 +113,7 @@ const Popup: FC<PopupProps> = ({ children }) => {
                 />
                 {errors?.address && (
                   <span className="text-red-500">
-                    {errors?.address?.message}
+                    {errors?.address?.message?.toString()}
                   </span>
                 )}
               </div>
